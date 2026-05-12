@@ -27,9 +27,10 @@ export function getPool(): mysql.Pool {
   pool = mysql.createPool({
     ...cfg,
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 5,
     queueLimit: 0,
     enableKeepAlive: true,
+    ssl: { rejectUnauthorized: true },
   });
   return pool;
 }
