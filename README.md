@@ -190,6 +190,19 @@ npm run build
 npm start
 ```
 
+### Despliegue en Render
+
+El servicio debe ejecutar el **artefacto compilado** (`dist/`), no `src/`. Si en el panel solo tienes `npm install` como build y `node dist/index.js` como start, **no se genera `dist`** y verás `Cannot find module '.../dist/index.js'`.
+
+Opciones:
+
+| Enfoque | Qué hacer |
+|--------|-----------|
+| **Recomendado** | Deja el **Build Command** vacío o en `npm install`. Este repo incluye `postinstall` → `npm run build`, así `tsc` corre al instalar y crea `dist/`. |
+| **Manual** | **Build Command:** `npm install && npm run build` — **Start Command:** `npm start` |
+
+Si en GitHub el API vive dentro de una carpeta (p. ej. `event-api/`), en Render define **Root Directory** en esa carpeta para que `package.json` y `dist/` coincidan con el directorio de trabajo.
+
 ---
 
 ## Seguridad
